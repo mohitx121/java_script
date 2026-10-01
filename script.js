@@ -1,102 +1,205 @@
-console.log("hello");
+let employees=[
+    {
+        name: "Rahul",
+        age: 24,
+        department: "Engineering",
+        salary: 45000,
+        tasksCompleted: 18,
+        attendance: 92,
+        isPermanent: true
+    },
+    {
+        name:"mohit",
+        age:22,
+        department:"HR",
+        salary:48000,
+        tasksCompleted:16,
+        attendance:90,
+        isPermanent:true
+    },
 
-//area of circle
-var radius=5;
-var area=Math.PI*radius*radius;
-console.log( "area of circle is ",area);
+    {
+        name:"Rohan",
+        age:25,
+        department:"Engineering",
+        salary:46000,
+        tasksCompleted:14,
+        attendance:85,
+        isPermanent:false
+    },
 
-// area of triangle
-var base=10;
-var height=20;
-var area=1/2 * base * height;
-console.log("area of triangle is",area);
+    {
+        name:"Himanshu",
+        age:26,
+        department:"Developer",
+        salary:52000,
+        tasksCompleted:19,
+        attendance:79,
+        isPermanent:false
+    },
 
-//area of rectangle
-var length=5;
-var breadth=10;
-var area= length*breadth;
-console.log("area of rectangle is",area);
+    {
+        name:"Lalit",
+        age:21,
+        department:"Developer",
+        salary:51000,
+        tasksCompleted:22,
+        attendance:93,
+        isPermanent:true
+    }
+];
 
-//area of parallelogram
-var base=20;
-var height=10;
-var area=base * height;
-console.log("area of parallelogram is",area);
+//employee performance  (task 1)
 
-//area of rhombus 
-var d1=20;
-var d2=10;
-var area=1/2* d1* d2;
-console.log("area of rhombus is",area);
+    function getPerformance(employee){
+        if(employee.tasksCompleted>=20 && employee.attendance>=90){
+            return "Excellent";
+        }
+        else if(employee.tasksCompleted>=15 && employee.attendance>=80){
+            return "Good";
+        }
+        else if(employee.tasksCompleted>=10 && employee.attendance>=70){
+            return "Average";
+        }
+        else{
+            return "needs improvement";
+        }
+    }
 
-//perimeter of circle
-var radius=10;
-var perimeter=2 * Math.PI *radius;
-console.log("perimeter of circle is",perimeter);
+console.log(getPerformance(employees[0]));
+console.log(getPerformance(employees[1]));
+console.log(getPerformance(employees[2]));
+console.log(getPerformance(employees[3]));
+console.log(getPerformance(employees[4]));
 
-//perimeter of equilateral triangle
-var a=20;
-var perimeter=3*a;
-console.log("perimeter of equilateral triangle is",perimeter);
+    // calculate bonus acc to performance (task 2)
+    function calculateBonus(employee){
+   
+    let performance=getPerformance(employee);
+    let bonus=0;
 
-//perimter of parallelogram
-var length=20;
-var breadth=10;
-var perimeter=2 * (+length+breadth);
-console.log("perimeter of parallelogram is",perimeter);
+    if(performance==="Excellent"){
+        bonus=employee.salary*20/100;
+    }
 
-//perimeter of square
-var side=10;
-var perimeter=4* side;
-console.log("perimeter of square is",perimeter);
+    else if(performance==="Good"){
+        bonus=employee.salary*10/100;
+    }
+    
+    else if(performance==="Average"){
+        bonus=employee.salary*5/100;
+    }
 
-//perimter of rhombus
-var side=20;
-var perimter=4*side;
-console.log("perimeter of rhombus is",perimeter);
+    else{
+         bonus=0;
+    }
 
-//volume of cone
-var radius=5;
-var height=10;
-var volume=1/3 *Math.PI *radius*radius*height;
-console.log("volume of cone is",volume);
+    if(employee.isPermanent===true){
+        bonus=bonus+(employee.salary*5/100)
+    }
 
-//volume of prism
-var basearea=20;
-var height=10;
-var volume=basearea*height;
-console.log("volume of prism",volume);
+    return bonus;
+    }
 
-//volume of cylinder 
-var radius=10;
-var height=10;
-var volume=Math.PI * radius*radius*height;
-console.log("volume of cylinder is",volume);
+console.log(calculateBonus(employees[0]));
+console.log(calculateBonus(employees[1]));
+console.log(calculateBonus(employees[2]));
+console.log(calculateBonus(employees[3]));
+console.log(calculateBonus(employees[4]));
 
-//volume of sphere
-var r=10;
-var volume=(4/3)*Math.PI*r*r*r;
-console.log("volume of sphere is",volume);
+//Update employee objects (task 3)
 
-//volume of pyramid
-var basearea=10;
-var height=20;
-var volume=1/3 * basearea*height;
-console.log("volume of pyramid",volume);
+for (let employee of employees){
+    employee.performance=getPerformance(employee);
+    employee.bonus=calculateBonus(employee);
+    employee.finalSalary=employee.salary+employee.bonus;
+    delete employee.age;
+}
+console.log(employees);
 
-//csa of cylinder
-var radius=10;
-var height=10;
-var csa=2*Math.PI*radius*height;
-console.log("csa of cylinder is",csa);
 
-//tsa of cube
-var side=10;
-var tsa=6*side*side;
-console.log("tsa of cube",tsa);
+//Search employees task 5
 
-// sum of two numbers 
-let x=10;
-let y=20;
-let sum=x+y;
-console.log("sum of x and y is ",sum);
+function getEmployeesByDepartment(department){
+    for(let i=0;i<employees.length;i++){
+        if(employees[i].department===department){
+            console.log(employees[i]);
+        }
+    }
+}
+getEmployeesByDepartment("Engineering");
+
+function getEmployeesWithSalaryAbove(salary){
+    for(let i=0;i<employees.length;i++){
+        if(employees[i].salary>salary ){
+            console.log(employees[i]);
+        }
+    }
+}
+getEmployeesWithSalaryAbove(4000);
+
+function getTopPerformer() {
+    let topEmployee=employees[0];
+    for (let i=1;i<employees.length;i++){
+        if(employees[i].performance>topEmployee.performance){
+            topEmployee=employees[i];
+        }
+    }
+            console.log(topEmployee);
+        
+}
+getTopPerformer();
+
+
+// task 6 
+
+let employe=
+    {
+        name: "Rahul",
+        age: 24,
+        department: "Engineering",
+        salary: 45000,
+        tasksCompleted: 18,
+        attendance: 92,
+        isPermanent: true
+    };
+    console.log(Object.keys(employe)); 
+
+    console.log(Object.values(employe));
+
+    console.log(Object.entries(employe));
+
+
+    for(let[key,value]of Object.entries(employe)){
+        console.log(key,":",value);
+    }
+
+
+//task 4 
+
+    let report={
+        totalEmployees: 0,
+        permanentEmployees: 0,
+        excellentEmployees: 0,
+        totalSalary: 0,
+        totalBonus: 0,
+        totalAttendance: 0
+    };
+    for (let employee of employees){
+        report.totalEmployees++;
+
+        if(employee.isPermanent=true){
+            report.permanentEmployees++;       
+        }
+        if(employee.performance==="Excellent"){
+            report.excellentEmployees++;
+        }
+        report.totalSalary+=employee.salary;
+        report.totalBonus+=employee.bonus;
+    
+    }
+    console.log("TotalEmployees",report.totalEmployees);
+    console.log("permanentEmployees",report.permanentEmployees);
+    console.log("excellentEmployees",report.excellentEmployees);
+    console.log("TotalSalary",report.totalSalary);
+    console.log("totalBonus",report.totalBonus);
