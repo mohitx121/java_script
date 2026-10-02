@@ -1,0 +1,21 @@
+body{
+    background-color: aqua;
+}
+.Calculator{
+border:2px solid black;
+height: 350px;
+text-align: center;
+padding:20px;
+background-color: beige;
+width: 350px;
+}
+#display{
+    width:350px;
+    height: 25px;
+    font-size: 15px;
+    margin-bottom:20px;
+}
+button{
+    width:40px;
+    height:30px;
+}
