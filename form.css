@@ -1,0 +1,60 @@
+h2{
+    text-align: center;  
+
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.form-details{
+    margin-bottom:17px ;
+}
+
+.form{
+    width:400px;
+    border:2px solid black;
+    height: 570px;
+    padding:25px;
+    background-color:white;
+}
+
+label{
+    display: block;
+    margin-bottom: 3px;
+}
+
+button{
+    width: 100%;
+    padding:3px;
+    color: peru;
+    cursor: pointer;
+    margin-top: 10px;
+    
+}
+
+button:hover{
+    background: blue;
+}
+
+input,select{
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.Gender input{
+    width:auto;
+    margin-right: 5px;
+}
+
+.Gender{
+    margin-top: 5px;
+}
+.hidden{
+    display: none;
+}
